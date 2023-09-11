@@ -12,9 +12,32 @@ const rl = readline.createInterface({
 
 
 const pigLatin = (word) => {
+  let indexOfVowel = indexOfFirstVowel(word);
 
-  // Your code here
+  if (indexOfVowel == 0) {
+    return word + "yay";
+  }
 
+  if (indexOfVowel == -1) {
+    return word + "ay";
+  }
+
+  const prefix = word.substring(0, indexOfVowel);
+  const suffix = word.substring(indexOfVowel);
+
+  return suffix + prefix + "ay";
+}
+
+const indexOfFirstVowel = (word) => {
+  const vowels = ["a", "e", "i", "o", "u"];
+  word = word.toLowerCase().trim();
+
+  for (let i = 0; i < word.length; i++) {
+    if (vowels.includes(word[i])) {
+      return i;
+    }
+  }
+  return -1;
 }
 
 // the first function called in the program to get an input from the user
